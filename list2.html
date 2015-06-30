@@ -26,6 +26,7 @@
         var BUCKET_NAME = "Language";
         var KEY_NAME = "ItemName";
         var KEY_CODE = "ItemCode";
+        var PQ = "外国人旅行者向け消費税免税制度では、本年10月１日より新たに免税販売の対象となる消耗品について、免税販売する際には、国土交通大臣及び経済産業大臣が指定する方法により包装することが必要です。";
         var objectCount = 0;
         var results;
         
@@ -35,7 +36,7 @@
             // generate some DOM elements.
             // set the KiiObject URI to an attribute so it can be tracked
             var row = $("<li></li>").attr("uri", index);
-            var link = $("<a></a>").attr("href", "https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&q=Hello%20world&target="+obj.get(KEY_CODE));
+            var link = $("<a></a>").attr("href", "https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+obj.get(KEY_CODE));
             
             // add the title/subtitle text
             $(link).append("<h3>"+obj.get(KEY_NAME)+"</h3>");
