@@ -25,6 +25,7 @@
         // define some global variables
         var BUCKET_NAME = "Language";
         var KEY_NAME = "ItemName";
+        var KEY_CODE = "ItemCode";
         var objectCount = 0;
         var results;
         
@@ -34,11 +35,11 @@
             // generate some DOM elements.
             // set the KiiObject URI to an attribute so it can be tracked
             var row = $("<li></li>").attr("uri", index);
-            var link = $("<a></a>").attr("href", "#");
+            var link = $("<a></a>").attr("href", "https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&q=Hello%20world&target="+obj.get(KEY_CODE));
             
             // add the title/subtitle text
             $(link).append("<h3>"+obj.get(KEY_NAME)+"</h3>");
-            $(link).append("<p>"+obj.getCreated()+"</p>");
+            //$(link).append("<p>"+obj.getCreated()+"</p>");
             
             // build the element
             $(row).append(link);
