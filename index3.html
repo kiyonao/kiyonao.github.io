@@ -33,7 +33,7 @@
         // define some global variables
         var username = 'kiyonao';
         var password = 'kiyoman25';
-        var target = 'en';
+        var TARGET = 'en';
         var API_ID = '6cd54484';
         var API_KEY = 'e5f3aecfa79f6ba519f8ab002535ce28';
 
@@ -41,7 +41,7 @@
         var KEY_NAME = "ItemName";
         var KEY_CODE = "ItemCode";
         var PQ = "外国人旅行者向け消費税免税制度では、本年10月１日より新たに免税販売の対象となる消耗品について、免税販売する際には、国土交通大臣及び経済産業大臣が指定する方法により包装することが必要です。";
-
+        var URL = "https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+TARGET;
 
         // the screen onloaded
         function performLogin() {
@@ -56,7 +56,8 @@
                 success: function(theAuthedUser) {
                     alert("authed success!");
                     // check the Parameter:'target'
-                    $.get("https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+obj.get(KEY_CODE), function(data){
+                    alert(TARGET);
+                    $.get(TARGET, function(data){
   			alert("Data Loaded: " + data);
 		　　　});
                     
