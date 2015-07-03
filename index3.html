@@ -54,9 +54,10 @@
             KiiUser.authenticate(username, password, {
                 // callback for successful authentication
                 success: function(theAuthedUser) {
-                
+                    alert("authed success!");
                     // check the Parameter:'target'
                     if(checkList()){
+                    	alert("checkList function response sucess");
 			$.mobile.changePage("https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+target);
 		    }
                     
