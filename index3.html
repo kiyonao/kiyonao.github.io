@@ -101,6 +101,7 @@
 		    var i = 0;
                     // iterate through the result set
                     while(i<resultSet.length) {
+                    	alert(i+":"+resultSet[i].get(KEY_CODE));
                         // create a row UI element based on the object
                         var kc = resultSet[i].get(KEY_CODE);
                         if(kc == target) break;
@@ -108,8 +109,10 @@
                     
                     // refresh the list to show the added results
                     if(i == resultSet.length){
+                    	alert('checklist function response false');
 			return false;
 		    }else{
+		    	alert('checklist function response true');
 			return true;
 		    }
                 },
