@@ -83,9 +83,10 @@
         }
 
         function checkList() {
+            alert("START CHECKLIST");
             // get the defined bucket belonging to this user
             var bucket = KiiUser.getCurrentUser().bucketWithName(BUCKET_NAME);
-            
+            alert("bucket:"+bucket);
             // create an empty KiiQuery (will return all objects in the bucket)
             var queryObject = KiiQuery.queryWithClause(null);
             
