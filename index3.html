@@ -1,0 +1,149 @@
+
+ Copyright 2012 Kii Corporation
+ http://kii.com
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+//-->
+
+<html>
+    <head>
+    
+        <title>Group Add</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        
+        <script type="text/javascript" src="KiiSDKv2.1.11.js"></script>
+        
+        <script type="text/javascript">
+        // define some global variables
+        var username = 'kiyonao';
+        var password = 'kiyoman25';
+        var target = 'en';
+        var API_ID = '6cd54484';
+        var API_KEY = 'e5f3aecfa79f6ba519f8ab002535ce28';
+
+        var BUCKET_NAME = "Language";
+        var KEY_NAME = "ItemName";
+        var KEY_CODE = "ItemCode";
+        var PQ = "外国人旅行者向け消費税免税制度では、本年10月１日より新たに免税販売の対象となる消耗品について、免税販売する際には、国土交通大臣及び経済産業大臣が指定する方法により包装することが必要です。";
+
+
+        // the screen onloaded
+        function performLogin() {
+        
+            // show a loading animation
+            $.mobile.showPageLoadingMsg();	
+            
+            // get the user credentials from the UI
+            // perform the asynchronous authentication, with callbacks defined
+            KiiUser.authenticate(username, password, {
+                // callback for successful authentication
+                success: function(theAuthedUser) {
+                
+                    // check the Parameter:'target'
+                    if(checkList()){
+			$.mobile.changePage("https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+target);
+		    }
+                    
+                    // hide the loading animation
+                    $.mobile.hidePageLoadingMsg();	
+                    
+                    // tell the console
+                    Kii.logger("User authenticated: " + user);
+                },
+                
+                // callback for failed registration
+                failure: function(theUser, anErrorString) {
+                    // hide the loading animation
+                    $.mobile.hidePageLoadingMsg();	
+                    
+                    // tell the user
+                    alert("Unable to register: " + anErrorString);
+                    
+                    // tell the console
+                    Kii.logger("Unable to register user: " + anErrorString);
+                }
+            });
+        }
+
+        function checkList() {
+            // get the defined bucket belonging to this user
+            var bucket = KiiUser.getCurrentUser().bucketWithName(BUCKET_NAME);
+            
+            // create an empty KiiQuery (will return all objects in the bucket)
+            var queryObject = KiiQuery.queryWithClause(null);
+            
+            // sort the results by creation date
+            queryObject.sortByAsc("_created");
+            
+            // perform the asynchronous query, with callbacks defined
+            bucket.executeQuery(queryObject, {
+                // callback for a successful query
+                success: function(queryPerformed, resultSet) {
+                    results = resultSet;
+              
+		    var i = 0;
+                    // iterate through the result set
+                    while(i<resultSet.length) {
+                        // create a row UI element based on the object
+                        var kc = resultSet[i].get(KEY_CODE);
+                        if(kc == target) break;
+                    }
+                    
+                    // refresh the list to show the added results
+                    if(i == resultSet.length){
+			return false;
+		    }else{
+			return true;
+		    }
+                },
+                    
+                // callback for a failed query
+                failure: function(queryPerformed, anErrorString) {
+                    // tell the user
+                    alert("Unable to execute query: " + anErrorString);
+                    
+                    // tell the console
+                    Kii.logger("Unable to execute query: " + anErrorString);
+		    return false;
+                }
+            });
+        }
+
+        
+            $(document).ready(function() {
+            	// 
+            	//
+                // initialize the Kii SDK!
+                Kii.initializeWithSite(API_ID, API_KEY, KiiSite.JP);
+            
+                // bind clicks to our login/sign up methods
+                $("#register-button").click(performRegistration);
+                $("#login-button").click(performLogin);
+            });
+            
+        </script>
+	
+    </head>
+    
+    <body onload="performLogin();">
+    
+        
+    </body>
+
+</html>
