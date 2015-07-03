@@ -56,16 +56,15 @@
                 success: function(theAuthedUser) {
                     alert("authed success!");
                     // check the Parameter:'target'
-                    //if(checkList()){
-                    	//alert("checkList function response sucess");
-			$.mobile.changePage("https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+target);
-		    //}
+                    $.get("https://www.googleapis.com/language/translate/v2?key=AIzaSyDkTAwzWbT_QcgFj42iSvGStQrb0HuJOjk&format=text&q="+PQ+"&target="+obj.get(KEY_CODE), function(data){
+  			alert("Data Loaded: " + data);
+		　　　});
                     
                     // hide the loading animation
-                    $.mobile.hidePageLoadingMsg();	
+                    //$.mobile.hidePageLoadingMsg();	
                     
                     // tell the console
-                    Kii.logger("User authenticated: " + user);
+                    //Kii.logger("User authenticated: " + user);
                 },
                 
                 // callback for failed registration
