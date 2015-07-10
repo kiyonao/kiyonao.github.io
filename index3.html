@@ -60,7 +60,7 @@
                     $.get(URL, function(data){
   			//alert("Data Loaded: " + JSON.stringify(data));
   			$(data.release).each(function(){
-  				alert("Data Loaded: " + this.translations.translatedText);
+  				alert("Data Loaded: " + JSON.stringify(this.item[0].translations));
   			}) 
   			
 		　　　});
