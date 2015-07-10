@@ -58,12 +58,8 @@
                     // check the Parameter:'target'
                     //alert(URL);
                     $.get(URL, function(data){
-  			//alert("Data Loaded: " + JSON.stringify(data));
-  			$(data.release).each(function(){
-  				alert("Data Loaded: " + JSON.stringify(this.item[0]));
-  			}) 
-  			
-		　　　});
+  			alert("Data Loaded: " + JSON.stringify(data));
+		 　});
                     
                     // hide the loading animation
                     //$.mobile.hidePageLoadingMsg();	
