@@ -58,7 +58,9 @@
                     // check the Parameter:'target'
                     //alert(URL);
                     $.get(URL, function(data){
-  			alert("Data Loaded: " + JSON.stringify(data));
+                    	var myData = JSON.parse(data);
+                    	alert(myData.data[0].translations[0].translatedText);
+  			//alert("Data Loaded: " + JSON.stringify(data));
 		 　});
                     
                     // hide the loading animation
