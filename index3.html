@@ -57,9 +57,8 @@
                     alert("authed success!");
                     // check the Parameter:'target'
                     //alert(URL);
-                    $.get(URL, function(data){
-                    	var myData = $.parseJSON(JSON.stringify(data));
-                    	alert(myData.data[0].translations[0].translatedText);
+                    $.getJSON(URL, function(data){
+                        alert(data.data[0].translations[0].translatedText);
   			//alert("Data Loaded: " + JSON.stringify(data));
 		 　});
                     
