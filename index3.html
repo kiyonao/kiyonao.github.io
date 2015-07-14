@@ -58,7 +58,7 @@
                     // check the Parameter:'target'
                     //alert(URL);
                     $.get(URL, function(data){
-                    	var myData = JSON.parse(data);
+                    	var myData = $.parseJSON(JSON.stringify(data));
                     	alert(myData.data[0].translations[0].translatedText);
   			//alert("Data Loaded: " + JSON.stringify(data));
 		 　});
