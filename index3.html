@@ -1,5 +1,5 @@
 
- Copyright 2012 Kii Corporation
+Copyright 2012 Kii Corporation
  http://kii.com
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,7 +36,6 @@
         var TARGET = 'en';
         var API_ID = '6cd54484';
         var API_KEY = 'e5f3aecfa79f6ba519f8ab002535ce28';
-
         var BUCKET_NAME = "Language";
         var KEY_NAME = "ItemName";
         var KEY_CODE = "ItemCode";
@@ -57,11 +56,12 @@
                     alert("authed success!");
                     // check the Parameter:'target'
                     //alert(URL);
-                    $.get(URL, function(data){
-                        //alert(data.data[0].translations[0].translatedText);
-                        //alert(data);
-  			alert("Data Loaded1: " + JSON.stringify(data));
-  			//alert("Data Text: ") + data[0]);
+                    $.get(URL, function(data1){
+			alert(data1['data']['translations'][0]['translatedText']);
+			var trText = data1['data']['translations'][0]['translatedText'];
+			var htmltarget = document.getElementById('canvas');
+			htmltarget.innerHTML = trText;
+			$.mobile.hidePageLoadingMsg();
 		 　});
                     
                 },
@@ -79,7 +79,6 @@
                 }
             });
         }
-
         function checkList() {
             alert("START CHECKLIST");
             // get the defined bucket belonging to this user
@@ -127,7 +126,6 @@
                 }
             });
         }
-
         
             $(document).ready(function() {
             	// 
@@ -136,7 +134,7 @@
                 Kii.initializeWithSite(API_ID, API_KEY, KiiSite.JP);
             
                 // bind clicks to our login/sign up methods
-                $("#register-button").click(performRegistration);
+                //$("#register-button").click(performRegistration);
                 $("#login-button").click(performLogin);
             });
             
@@ -145,8 +143,7 @@
     </head>
     
     <body onload="performLogin();">
-    
-        
+    <div style="text-align:left" id="canvas"></div>
     </body>
 
 </html>
